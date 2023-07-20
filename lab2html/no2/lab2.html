@@ -97,6 +97,7 @@
             <i>ประกอบด้วยตัวเลข ตัวอักษร หรือ_ตั้งแต่8ตัวขึ้นไป</i><br>
             <label>Password: </label><br>
             <input type="password"
+                    required
                     pattern="[A-Za-z0-9]{8,}"
                     title="ประกอบไปด้วยอักขระ8ตัวขึ้นไป"><br>
             <i>ประกอบไปด้วยอักขระ8ตัวขึ้นไป</i>
@@ -105,8 +106,8 @@
             <div class="text-inside-border3">
             <p>ข้อมูลทัวร์ที่ต้องการ</p></div>
             <label>แพคเก็จทัวร์: </label>
-            <select name="Pack">
-                <option value="def" selected> --select--</option>
+            <select name="Pack" required>
+                <option value="" selected> --select--</option>
                 <option value="Pack1"> Vip1</option>
                 <option value="Pack2"> Vip2</option>
                 <option value="Pack3"> Vip3</option>

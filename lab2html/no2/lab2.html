@@ -77,11 +77,11 @@
                 title="กรอกเบอร์โทรศัพท์"><br>
             <label>ที่อยู่:</label>
             <br>
-            <textarea cols="45" rows="5" style="width: 220px; height: 100px;"> </textarea><br>
+            <textarea cols="45" rows="5" style="width: 220px; height: 100px;" required name="ที่อยู่"> </textarea><br>
             <label>รหัสไปรษณีย์:</label>
             <input type="text" style="width: 50px;"
                 name="รหัสไปรษณีย์"
-                pattern="\d{5}"><br>
+                pattern="\d{5}"required><br>
             <label>รูปผู้จอง:</label>
             <input type="file">
         </div><br><br>
@@ -113,9 +113,9 @@
                 <option value="Pack3"> Vip3</option>
             </select><br>
             <label>วันที่เดินทาง: </label>
-            <input type="date" name="calendar"><br>
+            <input type="date" name="calendar" required><br>
             <label>จำนวนผู้เดินทาง: </label>
-            <input type="number" style="width: 50px;" min="1" max="10"><br>
+            <input type="number" style="width: 50px;" min="1" max="10" required><br>
             <label>เน้นการท่องเที่ยวแบบใด?</label><br>
             <input type="checkbox" name="shopping" value="shopping">ชอปปิ้ง<br>
             <input type="checkbox" name="nature" value="nature">ธรรมชาติ<br>

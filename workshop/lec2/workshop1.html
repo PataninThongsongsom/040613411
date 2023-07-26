@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="form-echo.php">
+        <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            pattern="[a-z]{1,15}"
+            title="Username should only contain lowercase letters. e.g.john">
+        <h2>1. เป็นสระในภาษาอังกฤษเท่านั้นและมีได้ 3 ตัว</h2>
+        <input 
+            type="text"
+            name="3english"
+            placeholder="3 english only"
+            pattern="[aeiouAEIOU]*3"
+            title="สระเท่านั้นหรือมีสูงสุด 3 ตัว"
+    </form>
+</body>
+</html>

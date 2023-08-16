@@ -2,37 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Document</title>
     <script>
-        var size = 14; // ประกาศตัวแปรไว้ใช้ร่วมกัน ใช้เก็บขนาดที่เพิ่มหรือลด
-        function decrease() {
-          let pa = document.getElementById("p1");
-          size-=2;
-          pa.style.fontSize = size + "px";  
-        }
-        function increase() {
-            let pa = document.getElementById("p1");
-            size+=2
-            pa.style.fontSize = size+ "px";  
+        function cal(){
+            let t1 = document.getElementById("text1");
+            let t2 = document.getElementById("text2");
+            let t3 = document.getElementById("text3");
+            let p = document.getElementById("sel");
+            let v1 = parseFloat(t1.value);
+            let v2 = parseFloat(t2.value);
+            let v3 = p.value;
+            let result =0;
+            switch (v3) {
+                case '+':
+                    result= v1 + v2;
+                    break;
+            
+                case '-':
+                    result= v1 - v2;
+                    break;
+                case '*':
+                    result = v1 * v2;
+                    break;
+                case '/':
+                    result = v1 / v2;
+                    break;
+            }
+            t3.value = result;
+            //console.log(p.value);
         }
         window.onload = function(){
-            let debtn = document.getElementById("de");
-            let indtn = document.getElementById("in");
-            debtn.onclick = decrease;
-            indtn.onclick = increase;
+            let btn = document.getElementById("bt");
+            btn.onclick = cal;
         }
     </script>
 </head>
 <body>
-    <h1>
-        <span id="de">-</span> |
-        <span id="in">+</span>
-    </h1>
-    <p id="p1">
-        If you're leavin', will you take me with you? I'm
-        tired of talkin' on my phone There is one thing I can
-        never give you My heart will never be your home
-    </p>
+    <form>
+        <input type="text" id="text1">
+        <select id="sel">
+            <option>+</option>
+            <option>-</option>
+            <option>*</option>
+            <option>/</option>
+        </select>
+        <input type="text" id="text2">=
+        <input type="text" id="text3">
+        <input type="button" value="Go Go" id="bt">
+    </form>
 </body>
 </html>

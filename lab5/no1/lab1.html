@@ -2,17 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
+    
     <title>Document</title>
     <script>
-
+        function cal(){
+            let t1 = document.getElementById("text1");
+            let t2 = document.getElementById("text2");
+            let t3 = document.getElementById("text3");
+            let v1 = parseFloat(t1.value);
+            let v2 = parseFloat(t2.value);
+            let v3 = v1 + v2;
+            t3.value = v3;
+        }
+        window.onload = function(){
+            let btn = document.getElementById("bt");
+            btn.onclick = cal;
+        }
     </script>
 </head>
 <body>
     <form>
         <input type="text" id="text1">+
-        <input type="text" id="text1">=
-        <input type="text" id="text1">
+        <input type="text" id="text2">=
+        <input type="text" id="text3">
+        <input type="button" value="Go Go" id="bt">
     </form>
 </body>
 </html>

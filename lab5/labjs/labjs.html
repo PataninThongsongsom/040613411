@@ -27,20 +27,7 @@
                 gpa: 2.90,
                 help: true
             },
-            {
-                fullname: 'นาย เก่ง สมใจ',
-                age: 21,
-                year: 4,
-                gpa: 3.90,
-                help: false
-            },
-            {
-                fullname: 'นางสาวดีใจ จังเลย',
-                age: 19,
-                year: 4,
-                gpa: 4.00,
-                help: true
-            },
+            
         ]
         
         for (let i = 0; i < student.length; i++) {
@@ -53,25 +40,22 @@
             }else{
                 h = 'ช่วยงานภาควิชาด้วย'
             }
+            if (student[i].gpa >= 2.75) {
+                g = 'เกรดเฉลี่ยถึงเกณฑ์และ'
+            }
 
-            
-            console.log('ชั้นปีที่ '+student[i].year)
-            
-            
-            if (student[i].gpa > 3.20) {
-                g = 'เกรดเฉลี่ยถึงเกณฆ์'
-                if (student[i].year >= 2 && student[i].help == true) {
-                    
-                    console.log(student[i].fullname+' ได้รับทุน เนื่องจาก'+g+h)
-                }else if(student[i].year == 1){
-                    console.log(student[i].fullname+' ได้รับทุน เนื่องจาก'+g+h)
-                }
-                else{
-                    console.log(student[i].fullname+' ไม่ได้รับทุน เนื่องจาก'+g+h)
-                }
+            console.log('ชั้นปีที่'+student[i].year)
+            if (student[i].gpa >= 3.20) {
+                
+                console.log(student[i].fullname+' ได้รับทุน เนื่องจาก'+g+h)
+            }
+            else if (student[i].year >= 2 && student[i].help==true && student[i].gpa >= 2.75) {
+                
+                console.log(student[i].fullname+' ได้รับทุน เนื่องจาก'+g+h)
             }else{
                 console.log(student[i].fullname+' ไม่ได้รับทุน เนื่องจาก'+g+h)
             }
+            
         }
 
     </script>

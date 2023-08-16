@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function showmsg(){
+            var s1 = document.getElementById("song1");
+            var s2 = document.getElementById("song2");
+            var s3 = document.getElementById("song3");
+            s1.innerHTML = "เรือเล็กควรออกจากฝั่ง - bodyslam";
+            s2.innerHTML = "คำถามซึ่งไร้คนตอบ - Getsunova";
+            s3.innerHTML = "โปรดเถิดรัก - Cocktail";
+        }
+        
+        window.onload = function() {
+            var ch = document.getElementById("chart");
+            ch.onclick = showmsg;
+        }
+    </script>
+</head>
+<body>
+    <h1 id="chart"> Top Chart</h1>
+    <ul id="playlist">
+        <li id="song1"></li>
+        <li id="song2"></li>
+        <li id="song3"></li>
+    </ul>
+    
+</body>
+</html>

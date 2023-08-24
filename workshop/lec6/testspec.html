@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div >span{
+        color: green;
+    }
+    .main > .alert {
+        color: crimson;
+    }
+    #nav >li:hover{color: crimson;}
+    #nav>li:nth-child(even):hover{color: blue;}
+</style>
+<body>
+    <div class="main">
+        <span>Some text in span in "main"</span><br>
+        <span class="alert">Some text in "alert: span in "main"</span>
+    </div>
+    <ul id="nav">
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+        <li>item 4</li>
+        <li>item 5</li>
+    </ul>
+</body>
+</html>

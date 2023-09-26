@@ -12,10 +12,10 @@
             $row = $stmt->fetch()
         ?>
         
-            <?=$row["name"]?><br>
-            <?=$row["address"]?><br>
-            <?=$row["mobile"]?><br>
-            <?=$row["email"]?><br>
+            ชื่อสมาชิก: <?=$row["name"]?><br>
+            ที่อยู่: <?=$row["address"]?><br>
+            เบอร์โทรศัพท์: <?=$row["mobile"]?><br>
+            Email: <?=$row["email"]?><br>
         
         
     </body>

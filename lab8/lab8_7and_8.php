@@ -1,18 +1,56 @@
-<?php include "./php/connect.php" ?>
-<html>
-    <head><meta charset="utf-8"></head>
-    <body>
-        <?php
-            $stmt = $pdo->prepare("INSERT INTO member VALUE ('',?,?,?,?,?,?)");
-            $stmt->bindParam(1,$_POST["username"]);
-            $stmt->bindParam(2,$_POST["password"]);
-            $stmt->bindParam(3,$_POST["name"]);
-            $stmt->bindParam(4,$_POST["address"]);
-            $stmt->bindParam(5,$_POST["moblie"]);
-            $stmt->bindParam(6,$_POST["email"]);
-            if($stmt->execute()){
-                header("location: ./lab8_5_2.php");
-           } 
-        ?>
-    </body>
-</html>
+<?php 
+
+include "./php/connect2.php";
+ 
+$targetDir = "./img/"; 
+$statusMsg = ''; 
+if(isset($_POST["submit"])){ 
+    $txtName = $_POST["namess"];
+    $txtEmail = $_POST["email"];
+    $txtAddress = $_POST["address"];
+    $txtPhone = $_POST["moblie"];
+    $txtUsername = $_POST["username"];
+    $txtpassword = $_POST["password"];
+    // $insert = "INSERT INTO `member` (`username`, `password`, `name`, `address`, `mobile`,`email`) VALUES ('$txtUsername', '$txtpassword', '$txtName', '$txtAddress', '$txtPhone', '$txtEmail')";
+    // $rs = mysqli_query($con,$insert);
+    
+    if(!empty($_FILES["file"]["name"])){ 
+        //get file name
+        $fileName = basename($_FILES["file"]["name"]); 
+        $targetFilePath = $targetDir . $fileName; 
+        $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION); 
+        
+        // Allow certain file formats 
+        $allowTypes = array('jpg','png','jpeg','gif'); 
+        if(in_array($fileType, $allowTypes)){ 
+            // Upload file to server 
+            if(move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)){
+                //$insert = $con->query("INSERT INTO member (username, password, name, address, mobile, email) VALUES ('$txtUsername', '$txtpassword', '$txtName', '$txtAddress', '$txtPhone', '$txtEmail')");
+                $insert = "INSERT INTO `member` (`username`, `password`, `name`, `address`, `mobile`,`email`) VALUES ('$txtUsername', '$txtpassword', '$txtName', '$txtAddress', '$txtPhone', '$txtEmail')";
+                $rs = mysqli_query($con,$insert);
+                if($rs){ 
+                    $statusMsg = "The file ".$fileName. " has been uploaded successfully."; 
+                }else{ 
+                    $statusMsg = "File upload failed, please try again."; 
+                }  
+            }else{ 
+                $statusMsg = "Sorry, there was an error uploading your file."; 
+            } 
+        }else{ 
+            $statusMsg = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.'; 
+        } 
+    }else{ 
+        $statusMsg = 'Please select a file to upload.'; 
+    } 
+
+
+
+
+}
+
+echo "<script type='text/javascript'>alert('{$statusMsg}'); 
+    window.location = './lab8_5_2.php'
+</script>";
+ 
+
+?>  

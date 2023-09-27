@@ -3,9 +3,9 @@
 <html>
     <head><meta charset="utf-8"></head>
     <?php
-        $stmt = $pdo->prepare("SELECT * FROM product WHERE pid LIKE ?");
+        $stmt = $pdo->prepare("SELECT * FROM member WHERE name LIKE ?");
             if(!empty($_GET)){
-                $value = '%' .$_GET["pid"]. '%';
+                $value = '%' .$_GET["name"]. '%';
             }
             $stmt->bindParam(1,$value);
             $stmt->execute();
@@ -13,12 +13,12 @@
     ?>
 
         <div style="display:flex">
-            <div><img src="img/product_photo/<?=$row["pid"]?>.jpg" width="200"><br></div>
+            <div><img src="img/<?=$row["id"]?>.jpg" width="200"><br></div>
                 <div style="padding: 15px;">
-                <h2><?=$row["pname"]?></h2><br>
-                รายละเอียดสินค้า: <?=$row["pdetail"]?><br>
-                ราคาขาย: <?=$row["price"]?> บาท<br><br>
-                ซื้อวันนี้ลด 10% เหลือ <?=$row["price"]*0.9?>
+                ชื่อสมาชิก: <?=$row["name"]?><br>
+                ที่อยู่: <?=$row["address"]?><br>
+                เบอร์โทรศัพท์: <?=$row["mobile"]?><br>
+                Email: <?=$row["email"]?><br>
 
             </div>
         </div>

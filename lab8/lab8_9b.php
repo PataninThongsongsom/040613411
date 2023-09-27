@@ -1,16 +1,45 @@
-<?php include './php/connect.php';
+<?php 
+    include "./php/connect2.php";
+    
+    $targetDir = "./img/"; 
+    
+    if(isset($_POST["submit"])){ 
+        $txtName = $_POST["namess"];
+        $txtEmail = $_POST["email"];
+        $txtAddress = $_POST["address"];
+        $txtPhone = $_POST["moblie"];
+        $txtUsername = $_POST["username"];
+        $txtpassword = $_POST["password"];
+        $insertedId = $_POST["id"];
+        $insert = "UPDATE `member` SET `username` = '$txtUsername', `password`= '$txtpassword', `name`='$txtName', `address`='$txtAddress', `mobile`='$txtPhone',`email`='$txtEmail'WHERE `member`.`id` = '$insertedId'";
+        $rs = mysqli_query($con,$insert);
+        
+        if(!empty($_FILES["file"]["name"])){ 
+            //get file name
+            $fileName = basename($_FILES["file"]["name"]); 
+            $editfilename = $insertedId . '.jpg';
+            $targetFilePath = $targetDir . $editfilename;  
+                if (file_exists($targetFilePath)) {   
+                    unlink($targetFilePath);  
+                }
+                if(move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)){
+                    //$insert = $con->query("INSERT INTO member (username, password, name, address, mobile, email) VALUES ('$txtUsername', '$txtpassword', '$txtName', '$txtAddress', '$txtPhone', '$txtEmail')");
+                    if($rs){ 
+                        header("location: ./lab8_8.php");
 
-    $stmt=$pdo->prepare("UPDATE member SET username=?,password=?,name=?,Address=?,mobile=?,email=? WHERE id=?");
-    $stmt->bindParam(1,$_POST["username"]);
-    $stmt->bindParam(2,$_POST["password"]);
-    $stmt->bindParam(3,$_POST["name"]);
-    $stmt->bindParam(4,$_POST["address"]);
-    $stmt->bindParam(5,$_POST["moblie"]);
-    $stmt->bindParam(6,$_POST["email"]);
-    $stmt->bindParam(7,$_POST["id"]);
-    if($stmt->execute()){
-        echo "แก้ไข รายละเอียดของ ".$_POST["username"]. " สำเร็จ";
-   }
+                    }else{ 
+                        echo "File upload failed, please try again."; 
+                    }  
+                }else{ 
+                    echo "Sorry, there was an error uploading your file."; 
+                } 
+            
+        }else{ 
+            echo 'Please select a file to upload.'; 
+        } 
+    } 
+
+
 
 
 ?>

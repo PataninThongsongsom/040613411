@@ -1,7 +1,12 @@
-<?php include "./connect.php" ?>
+<?php include "connect.php" ?>
 <?php session_start(); ?>
 <html>
 <body>
+	<?php
+	if(!isset($_SESSION['cart'])){
+		$_SESSION['cart']=array();
+	}	
+	?>
 	<a href="cart.php?action=">สินค้าในตะกร้า (<?=sizeof($_SESSION['cart'])?>)</a>
 	<div style="display:flex">	
 	<?php

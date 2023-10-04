@@ -57,7 +57,10 @@
                     <td><?=$row2["pname"]?></td>
                     <td><?=$row2["quantity"]?></td>
                 </tr>
-            <?php } }
+            <?php } 
+                
+        
+        }
     ?>
 </table>
 หากต้องการออกจากระบบโปรดคลิก <a href='logout.php'>ออกจากระบบ</a>

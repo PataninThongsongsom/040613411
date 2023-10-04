@@ -3,8 +3,8 @@
   
   session_start();
 
-  // $stmt = $pdo->prepare("SELECT * FROM member WHERE username = ? AND password = ?");
-  $stmt = $pdo->prepare("SELECT * FROM product JOIN item ON product.pid = item.pid JOIN orders ON orders.ord_id = item.ord_id JOIN member ON member.username = orders.username  WHERE member.username= ? AND member.password=? ");
+  $stmt = $pdo->prepare("SELECT * FROM member WHERE username = ? AND password = ?");
+  //$stmt = $pdo->prepare("SELECT * FROM product JOIN item ON product.pid = item.pid JOIN orders ON orders.ord_id = item.ord_id JOIN member ON member.username = orders.username  WHERE member.username= ? AND member.password=? ");
   $stmt->bindParam(1, $_POST["username"]);
   $stmt->bindParam(2, $_POST["password"]);
   $stmt->execute();

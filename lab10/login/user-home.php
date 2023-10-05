@@ -64,7 +64,10 @@
     ?>
 </table>
 <?php 
+    if ($_SESSION["pevi"]==='admin') {
 ?>
+    <a href="../cart/stock.php">หน้าคงคลัง</a><br>
+<?php } ?>
 หากต้องการออกจากระบบโปรดคลิก <a href='logout.php'>ออกจากระบบ</a>
 </body>
 </html>

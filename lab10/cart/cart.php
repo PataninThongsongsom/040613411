@@ -97,6 +97,10 @@ if ($_GET["action"]=="add") {
 <?php 
 	$sum = 0;
 	foreach ($_SESSION["cart"] as $item) {
+		$stmt3 = $pdo->prepare("UPDATE product SET quantity=quantity-:qty_t WHERE pid=:id");
+		$stmt3->bindParam(':qty_t',$item["qty"]);
+		$stmt3->bindParam(':id',$item["pid"]);
+		$stmt3->execute();
 		$sum += $item["price"] * $item["qty"];
 ?>
 	<tr>

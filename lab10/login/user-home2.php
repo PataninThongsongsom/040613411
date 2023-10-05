@@ -7,6 +7,7 @@
 <table border="1">
         
         <tr id="tr1">
+        
         </tr>
 
     <?php
@@ -33,38 +34,38 @@
         </tr>
 	<?php }}?>
     <?php 
-        $stmt2 = $pdo->prepare("SELECT orders.ord_id,member.username,product.pname,SUM(item.quantity)AS quantity,product.pid,product.price FROM product JOIN item ON product.pid = item.pid JOIN orders ON orders.ord_id = item.ord_id JOIN member ON member.username = orders.username  GROUP BY orders.ord_id;" );
+        $stmt2 = $pdo->prepare("SELECT orders.ord_id,member.username,product.pname,SUM(item.quantity)AS quantity FROM product JOIN item ON product.pid = item.pid JOIN orders ON orders.ord_id = item.ord_id JOIN member ON member.username = orders.username  GROUP BY product.pname,orders.ord_id;" );
         $stmt2->execute();
-        if ($_SESSION["pevi"]==='admin') {    
+        if ($_SESSION["pevi"]==='admin') {
         while ($row2 = $stmt2->fetch()) { 
-            $_SESSION["ord_id"] = $row2["ord_id"];
-            if(isset($_SESSION['cart'])){
-                unset($_SESSION['cart']);
-            }
             ?>
                 <script> 
                 let th4 =document.createElement("th");
+                let th5 =document.createElement("th");
+                let th6 =document.createElement("th");
                 let th7 =document.createElement("th");
                 let tr2 =document.getElementById("tr1");
                 th7.innerHTML = "OrderID";
                 th4.innerHTML = "Username";
-                
+                th5.innerHTML = "Product";
+                th6.innerHTML = "Quantity";
                 tr2.appendChild(th7);
-                tr2.appendChild(th4);  
+                tr2.appendChild(th4);
+                tr2.appendChild(th5);
+                tr2.appendChild(th6);  
             </script>
                 <tr>
-                    <td><a href="../cart/cart.php?action=&ord_id=<?=$row2["ord_id"]?>"><?=$row2["ord_id"]?></a></td>
+                    <td><?=$row2["ord_id"]?></td>
                     <td><?=$row2["username"]?></td>
-                    
+                    <td><?=$row2["pname"]?></td>
+                    <td><?=$row2["quantity"]?></td>
                 </tr>
             <?php } 
                 
-        }
         
+        }
     ?>
 </table>
-<?php 
-?>
 หากต้องการออกจากระบบโปรดคลิก <a href='logout.php'>ออกจากระบบ</a>
 </body>
 </html>

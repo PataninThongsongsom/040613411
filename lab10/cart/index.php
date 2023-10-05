@@ -7,7 +7,7 @@
 		$_SESSION['cart']=array();
 	}	
 	?>
-	<a href="cart.php?action=">สินค้าในตะกร้า (<?=sizeof($_SESSION['cart'])?>)</a>
+	<a href="cart.php?action=&ord_id=<?=$_SESSION["ord_id"]?>">สินค้าในตะกร้า (<?=sizeof($_SESSION['cart'])?>)</a>
 	<div style="display:flex">	
 	<?php
 		$stmt = $pdo->prepare("SELECT * FROM product");

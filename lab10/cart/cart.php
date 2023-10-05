@@ -2,9 +2,47 @@
 
 session_start();
 
+include "./connect.php";
+	if (!empty($_GET["ord_id"])) {
+	$ord_id = $_GET["ord_id"];
+	$stmt2 = $pdo->prepare("SELECT orders.ord_id,member.username,product.pname,item.quantity,product.pid,product.price FROM product JOIN item ON product.pid = item.pid JOIN orders ON orders.ord_id = item.ord_id JOIN member ON member.username = orders.username WHERE orders.ord_id=?" );
+	$stmt2->bindParam(1, $ord_id);
+    $stmt2->execute();  
+    while ($row2 = $stmt2->fetch()) { 
+			if(!isset($_SESSION['cart'])){
+				$_SESSION['cart']=array();
+			}
+            $pid = $row2["pid"];
+            $pname=$row2["pname"];
+            $price = $row2["price"];
+            $qty = $row2["quantity"];
+            $cart_item = array(
+                'pid' => $pid,
+                'pname' => $pname,
+                'price' => $price,
+                'qty' => $qty
+                );
+            // ถ้ายังไม่มีสินค้าใดๆในรถเข็น
+            if(empty($_SESSION['cart']))
+				$_SESSION['cart'] = array();
+		
+			// ถ้ามีสินค้านั้นอยู่แล้วให้บวกเพิ่ม
+			if(array_key_exists($pid, $_SESSION['cart'])){
+				$_SESSION['cart'][$pid]['qty'] = $qty;
+				
+			}
+				
+			// หากยังไม่เคยเลือกสินค้นนั้นจะ
+			else
+				$_SESSION['cart'][$pid] = $cart_item;
+
+
+   }  
+	}   
+?> <?php 
 // เพิ่มสินค้า
 if ($_GET["action"]=="add") {
-
+	
 	$pid = $_GET['pid'];
 
 	$cart_item = array(
@@ -19,9 +57,11 @@ if ($_GET["action"]=="add") {
     	$_SESSION['cart'] = array();
  
 	// ถ้ามีสินค้านั้นอยู่แล้วให้บวกเพิ่ม
-	if(array_key_exists($pid, $_SESSION['cart']))
+	if(array_key_exists($pid, $_SESSION['cart'])){
 		$_SESSION['cart'][$pid]['qty'] += $_POST['qty'];
- 
+		
+	}
+		
 	// หากยังไม่เคยเลือกสินค้นนั้นจะ
 	else
 	    $_SESSION['cart'][$pid] = $cart_item;
@@ -74,5 +114,6 @@ if ($_GET["action"]=="add") {
 </form>
 
 <a href="index.php">< เลือกสินค้าต่อ</a>
+<a href="../login/user-home.php">กลับหน้าหลัก</a>
 </body>
 </html>
